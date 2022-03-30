@@ -1,0 +1,1 @@
+Select distinct p.email from person p join person q on p.Id!= q.Id and p.Email = q.Email;
