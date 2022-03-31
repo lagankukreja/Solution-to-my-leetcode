@@ -1,2 +1,15 @@
-# select o1.customer_number from orders o1,orders o2 where 
-select customer_number from orders group by customer_number order by count(order_number) desc limit 1
+
+
+
+
+select customer_number
+from (
+select customer_number, rank() over (order by count(1) desc) rank_val
+from orders
+group by customer_number
+) a where rank_val = 1
+
+#normal query
+#nested query
+#window function
+#joins
