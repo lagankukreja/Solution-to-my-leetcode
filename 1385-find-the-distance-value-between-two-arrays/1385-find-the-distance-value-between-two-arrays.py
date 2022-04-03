@@ -1,11 +1,19 @@
 class Solution:
     def findTheDistanceValue(self, arr1: List[int], arr2: List[int], d: int) -> int:
-        count = 0
-        stop = 0
+        arr2.sort()
+        cnt = 0
         for i in range(len(arr1)):
-            for j in range(len(arr2)):
-                if abs(arr1[i]-arr2[j])<=d:
-                    stop = stop +1
+            l, r = 0, len(arr2) - 1
+            flag=True
+            while l <= r:
+                m = l + (r - l) // 2
+                if abs(arr1[i] - arr2[m]) <= d:
+                    flag=False
                     break
-            count = count+1
-        return count-stop
+                elif arr2[m] < arr1[i]:
+                    l = m + 1
+                else:
+                    r = m - 1
+                
+            cnt += flag
+        return cnt
